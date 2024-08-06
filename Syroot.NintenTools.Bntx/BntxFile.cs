@@ -43,6 +43,14 @@ namespace Syroot.NintenTools.NSW.Bntx
                 loader.Execute();
             }
         }
+        
+        public BntxFile(Stream stream, System.Text.Encoding encoding, bool leaveOpen = false)
+        {
+            using (BntxFileLoader loader = new BntxFileLoader(this, stream, encoding, leaveOpen))
+            {
+                loader.Execute();
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BntxFile"/> class from the file with the given
@@ -261,6 +269,14 @@ namespace Syroot.NintenTools.NSW.Bntx
         public void Save(Stream stream, bool leaveOpen = false)
         {
             using (BntxFileSaver saver = new BntxFileSaver(this, stream, leaveOpen))
+            {
+                saver.Execute();
+            }
+        }
+        
+        public void Save(Stream stream, System.Text.Encoding encoding, bool leaveOpen = false)
+        {
+            using (BntxFileSaver saver = new BntxFileSaver(this, stream, encoding, leaveOpen))
             {
                 saver.Execute();
             }

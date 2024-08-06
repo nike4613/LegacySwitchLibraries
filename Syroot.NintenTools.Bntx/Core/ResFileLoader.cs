@@ -27,7 +27,15 @@ namespace Syroot.NintenTools.NSW.Bntx.Core
         /// <param name="stream">The <see cref="Stream"/> to read data from.</param>
         /// <param name="leaveOpen"><c>true</c> to leave the stream open after reading, otherwise <c>false</c>.</param>
         internal BntxFileLoader(BntxFile bntxFile, Stream stream, bool leaveOpen = false)
-            : base(stream, Encoding.ASCII, true)
+            : base(stream, Encoding.UTF8, true)
+        {
+            ByteOrder = ByteOrder.LittleEndian;
+            BntxFile = bntxFile;
+            _dataMap = new Dictionary<uint, IResData>();
+        }
+        
+        internal BntxFileLoader(BntxFile bntxFile, Stream stream, Encoding encoding, bool leaveOpen = false)
+            : base(stream, encoding, true)
         {
             ByteOrder = ByteOrder.LittleEndian;
             BntxFile = bntxFile;
@@ -35,7 +43,7 @@ namespace Syroot.NintenTools.NSW.Bntx.Core
         }
 
         internal BntxFileLoader(Texture texture, Stream stream, bool leaveOpen = false)
-            : base(stream, Encoding.ASCII, true)
+            : base(stream, Encoding.UTF8, true)
         {
             ByteOrder = ByteOrder.LittleEndian;
             Texture = texture;

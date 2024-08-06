@@ -63,6 +63,13 @@ namespace Syroot.NintenTools.NSW.Bntx.Core
             ByteOrder = ByteOrder.LittleEndian;
             BntxFile = bntxFile;
         }
+        
+        internal BntxFileSaver(BntxFile bntxFile, Stream stream, Encoding encoding, bool leaveOpen)
+            : base(stream, encoding, leaveOpen)
+        {
+            ByteOrder = ByteOrder.LittleEndian;
+            BntxFile = bntxFile;
+        }
 
         internal BntxFileSaver(Texture texture, BntxFile bntxFile, Stream stream, bool leaveOpen)
             : base(stream, Encoding.ASCII, leaveOpen)
